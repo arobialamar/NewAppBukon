@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:contentDescription="@string/buku_kondangan"-->
+<!--        android:text="@string/kategori"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold" />-->
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Petunjuk"
+        android:textColor="@color/white"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contoh"
+        android:textColor="@color/white"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_width="320dp"
+        android:layout_height="370dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/desktipsi"
+        android:src="@drawable/sample"
+        android:layout_marginBottom="30dp" />
+
+    <EditText
+        android:layout_marginTop="0dp"
+        android:id="@+id/et_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/editext_login"
+        android:hint="@string/kategori"/>
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="32dp"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:background="@drawable/button_login"
+        android:text="@string/buat_btn" />
+
+</LinearLayout>

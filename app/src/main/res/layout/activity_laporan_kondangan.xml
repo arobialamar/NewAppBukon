@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".LaporanKondangan">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/laporan_kondangan"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pd_tgl"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="40dp" />
+
+    <!--    Rectangle-->
+    <TextView
+        android:id="@+id/tv_tanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TEST"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acara"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp" />
+
+    <!--    Rectangle-->
+    <TextView
+        android:id="@+id/tv_namaAcara"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TEST"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_uang"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp" />
+
+    <!--    Rectangle-->
+    <TextView
+        android:id="@+id/tv_totalUang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TEST"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_brs"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp" />
+
+    <!--    Rectangle-->
+    <TextView
+        android:id="@+id/tv_totalBeras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TEST"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jml_tamu"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp" />
+
+    <!--    Rectangle-->
+    <TextView
+        android:id="@+id/tv_tamuUndangan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:text="TEST"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

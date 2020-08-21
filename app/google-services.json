@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "40282059536",
+    "firebase_url": "https://bukon-9648e.firebaseio.com",
+    "project_id": "bukon-9648e",
+    "storage_bucket": "bukon-9648e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40282059536:android:4fdf6d6cffa26667e3eb95",
+        "android_client_info": {
+          "package_name": "arobial.ta.bukukondangan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40282059536-d2r7ss5ucklq5me81tme3ktg39omf0cs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "arobial.ta.bukukondangan",
+            "certificate_hash": "a576045e24c5ce54491f210855fb5a7f06a18fbe"
+          }
+        },
+        {
+          "client_id": "40282059536-72sg3pk08h7udeeas3slct35ahuvbiuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmmXYWdOv2GM_o8AHiMLN0AEVFgrPZFbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40282059536-72sg3pk08h7udeeas3slct35ahuvbiuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

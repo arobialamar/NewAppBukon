@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TambahData"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kondangan"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="50dp">
+        <EditText
+            android:id="@+id/nama1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="text"
+            android:hint="@string/nama"/>
+
+
+        <Spinner
+            android:id="@+id/sp_kcmt"
+            android:layout_below="@+id/nama1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"/>
+
+        <Spinner
+            android:id="@+id/sp_desa"
+            android:layout_below="@+id/sp_kcmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"/>
+
+        <EditText
+            android:id="@+id/lainnya"
+            android:layout_below="@+id/sp_desa"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/lainnya" />
+
+        <TextView
+            android:layout_below="@+id/lainnya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="24dp"
+            android:text="@string/jml_uang"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/nominal"
+            android:layout_below="@+id/lainnya"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/liter"
+            android:layout_below="@+id/nominal"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_below="@+id/nominal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="230dp"
+            android:text="@string/jml_beras"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_tambah"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:background="@drawable/button_save"
+        android:text="@string/btn_tambah" />
+
+</LinearLayout>
