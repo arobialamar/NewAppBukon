@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:elevation="0dp"
+    app:cardCornerRadius="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama" />
+
+            <TextView
+                android:id="@+id/tv_kcamatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kecamatan" />
+
+            <TextView
+                android:id="@+id/tv_klurahan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelurahan" />
+            <TextView
+                android:id="@+id/tv_alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelurahan" />
+
+            <TextView
+                android:id="@+id/tv_rp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp" />
+
+            <TextView
+                android:id="@+id/tv_liter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liter" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_liat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="Lihat" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

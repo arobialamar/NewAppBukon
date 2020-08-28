@@ -37,9 +37,6 @@
             android:name=".LaporanKondangan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TambahDataBeras"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".TambahData"
             android:screenOrientation="portrait" />
         <activity
@@ -48,6 +45,9 @@
         <activity
             android:name=".ForgotPassword"
             android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdateDeleteActivity"
             android:screenOrientation="portrait" />
     </application>
 

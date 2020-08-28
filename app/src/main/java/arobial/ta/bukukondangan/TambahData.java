@@ -32,7 +32,7 @@ import java.util.List;
 
 public class TambahData extends AppCompatActivity {
     Spinner kecamatan, kelurahan;
-    EditText Nama1, Alamat, Nominal, Liter;
+    EditText Nama, Alamat, Nominal, Liter;
     Button Tambah;
     DatabaseReference getRef;
     String getUserID;
@@ -48,7 +48,7 @@ public class TambahData extends AppCompatActivity {
 
         kecamatan = findViewById(R.id.sp_kcmt);
         kelurahan = findViewById(R.id.sp_desa);
-        Nama1 = findViewById(R.id.nama1);
+        Nama = findViewById(R.id.nama);
         Liter = findViewById(R.id.liter);
         Alamat = findViewById(R.id.lainnya);
         Nominal = findViewById(R.id.nominal);
@@ -58,6 +58,7 @@ public class TambahData extends AppCompatActivity {
 
         //Mendapatkan User ID dari akun yang terautentikasi
         user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
         getUserID = user.getUid();
         getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).child("Data Kondangan");
 
@@ -137,7 +138,7 @@ public class TambahData extends AppCompatActivity {
     }
 
     private void getValues(){
-        addData.setNama1(Nama1.getText().toString());
+        addData.setNama(Nama.getText().toString());
         addData.setKecamatan(kecamatan.getSelectedItem().toString());
         addData.setKelurahan(kelurahan.getSelectedItem().toString());
         addData.setAlamat(Alamat.getText().toString());
@@ -149,15 +150,15 @@ public class TambahData extends AppCompatActivity {
     public void btnTambah(){
                 getValues();
 
-                String isiNama1 = Nama1.getText().toString();
+                String isiNama1 = Nama.getText().toString();
 //                String isiCamat = kecamatan.getSelectedItem().toString();
 //                String isiLurah = kelurahan.getSelectedItem().toString();
                 String isiLamat = Alamat.getText().toString();
                 String isiRp = Nominal.getText().toString();
 
                 if (isiNama1.isEmpty()){
-                    Nama1.setError("Masukan Nama Utama");
-                    Nama1.requestFocus();
+                    Nama.setError("Masukan Nama Utama");
+                    Nama.requestFocus();
                 }
                 else if (isiLamat.isEmpty()){
                     Alamat.setError("Masukan nama");
@@ -171,7 +172,7 @@ public class TambahData extends AppCompatActivity {
                     getRef.child(String.valueOf(maxid+1)).setValue(addData).addOnSuccessListener(this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Nama1.setText("");
+                            Nama.setText("");
                             kecamatan.setSelection(0);
                             kelurahan.setSelection(0);
                             Alamat.setText("");

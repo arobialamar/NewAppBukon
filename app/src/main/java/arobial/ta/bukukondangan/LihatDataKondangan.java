@@ -1,11 +1,17 @@
 package arobial.ta.bukukondangan;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,77 +24,73 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+public class LihatDataKondangan extends AppCompatActivity{
 
-public class LihatDataKondangan extends AppCompatActivity {
+    private DataKondanganAdapter adapter;
+    private List<DataKondangan> DaKonList;
 
-    ListView ll;
-//    RecyclerView recyclerView;
-    ArrayAdapter<String> adapter;
-    DatabaseReference dataRef;
+    DatabaseReference getRef;
+    String getUserID;
     FirebaseUser user;
 
-    List<String> itemlist;
-
-    String uid;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lihat_data);
-        ll = findViewById(R.id.lView);
+        setContentView(R.layout.activity_tampil_data_kondangan);
+
+        //Mendapatkan User ID dari akun yang terautentikasi
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
-        uid = user.getUid();
-        itemlist = new ArrayList<>();
-        dataRef = FirebaseDatabase.getInstance().getReference();
+        getUserID = user.getUid();
+        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).child("Data Kondangan");
+        fillDataKondanganList();
+    }
 
-        dataRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                itemlist.clear();
+        private void fillDataKondanganList() {
 
-                for (int i = 0 ; i<2000 ; i++) {
-//                int i=0;
-//                String nama_anda  ;
-//                String alamat_anda;
-//                String hobi_anda;
-//                String status ;
-////              while (nama_anda = null){
-
-                    String nama1 = dataSnapshot.child(uid).child("Data Kondangan").child(String.valueOf(i+1)).child("nama1").getValue(String.class);
-//                    String kecamadan = dataSnapshot.child(uid).child("Data Uang").child(String.valueOf(i)).child("kecamatan").getValue(String.class);
-//                    String keluradan = dataSnapshot.child(uid).child("Data Uang").child(String.valueOf(i)).child("kelurahan").getValue(String.class);
-                    String kecamatan = dataSnapshot.child(uid).child("Data Kondangan").child(String.valueOf(i+1)).child("kecamatan").getValue(String.class);
-                    String uang = dataSnapshot.child(uid).child("Data Kondangan").child(String.valueOf(i+1)).child("rp").getValue(String.class);
-                    String liter = dataSnapshot.child(uid).child("Data Kondangan").child(String.valueOf(i+1)).child("liter").getValue(String.class);
-
-//                Toast.makeText(new LihatDataKondangan(),"Nama: "+nama_anda).show();
-                    if (nama1==null){
-                        break;
+            getRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    DaKonList = new ArrayList<>();
+                    for (DataSnapshot ds: snapshot.getChildren()) {
+                        DaKonList.add(ds.getValue(DataKondangan.class));
                     }
-//                    System.out.println("Nama " + nama_anda);
-                    itemlist.add("Nama : " + nama1);
-//                    itemlist.add("Kecamatan : " + kecamadan);
-//                    itemlist.add("Kelurahan : " + keluradan);
-                    itemlist.add("Kecamatan : " + kecamatan);
-                    itemlist.add("Uang : " + uang);
-                    itemlist.add("Beras : " + liter + " Liter");
-//                    i++;
+
+                    RecyclerView recyclerView = findViewById(R.id.list_data_kondangan);
+                    recyclerView.setHasFixedSize(true);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LihatDataKondangan.this);
+                    adapter = new DataKondanganAdapter(DaKonList);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(adapter);
 
                 }
 
-//                new RecyclerView_Config().setConfig(recyclerView, LihatDataKondangan.this);
-                adapter = new ArrayAdapter<>(LihatDataKondangan.this, android.R.layout.simple_list_item_1, itemlist);
-                ll.setAdapter(adapter);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
+        }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
             }
         });
+        return true;
     }
-
-
 }
