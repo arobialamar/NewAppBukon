@@ -51,13 +51,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        DataBeras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toLogin = new Intent(MenuActivity.this, TambahDataBeras.class);
-                startActivity(toLogin);
-            }
-        });
+//        DataBeras.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent toLogin = new Intent(MenuActivity.this, TambahDataBeras.class);
+//                startActivity(toLogin);
+//            }
+//        });
 
         LihatData.setOnClickListener(new View.OnClickListener() {
             @Override

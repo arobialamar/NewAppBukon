@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -54,7 +55,9 @@ public class LihatDataKondangan extends AppCompatActivity{
                     DaKonList = new ArrayList<>();
                     for (DataSnapshot ds: snapshot.getChildren()) {
                         DaKonList.add(ds.getValue(DataKondangan.class));
+                        Log.d("myTag" ,ds.getKey());
                     }
+
 
                     RecyclerView recyclerView = findViewById(R.id.list_data_kondangan);
                     recyclerView.setHasFixedSize(true);

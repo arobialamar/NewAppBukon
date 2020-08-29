@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TambahData"
+    tools:context=".UpdateDeleteActivity"
     android:background="@color/white">
 
     <TextView
@@ -112,17 +112,17 @@
         android:layout_gravity="center_horizontal">
 
         <Button
+            android:onClick="btnUbah_click"
             android:id="@+id/btn_ubah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal"
             android:textSize="17sp"
-            android:textColor="@color/black"
-            android:background="@drawable/button_save"
             android:text="ubah" />
 
         <Button
+            android:onClick="btnHapus_Click"
             android:id="@+id/btn_hapus"
             android:layout_toRightOf="@+id/btn_ubah"
             android:layout_marginStart="10dp"
@@ -134,7 +134,6 @@
             android:textColor="@color/black"
             android:background="@drawable/button_save"
             android:text="hapus" />
-
 
     </RelativeLayout>
 

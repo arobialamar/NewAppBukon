@@ -202,6 +202,4 @@ public class TambahData extends AppCompatActivity {
         }
         return true;
     }
-
-
 }
