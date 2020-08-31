@@ -1,82 +1,53 @@
 package arobial.ta.bukukondangan;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LihatDataKondangan extends AppCompatActivity{
-
-    private DataKondanganAdapter adapter;
-    private List<DataKondangan> DaKonList;
-
-    DatabaseReference getRef;
-    String getUserID;
-    FirebaseUser user;
+    RecyclerView mRecyclerView;
+    RecyclerView_Config.DataKondanganAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_data_kondangan);
+        mRecyclerView = findViewById(R.id.list_data_kondangan);
 
-        //Mendapatkan User ID dari akun yang terautentikasi
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        getUserID = user.getUid();
-        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).child("Data Kondangan");
-        fillDataKondanganList();
+        new FirebaseDatabaseHelper().readDataKondangan(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys) {
+                new RecyclerView_Config().setConfig(mRecyclerView, LihatDataKondangan.this, dataKondangans, keys);
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
     }
-
-        private void fillDataKondanganList() {
-
-            getRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    DaKonList = new ArrayList<>();
-                    for (DataSnapshot ds: snapshot.getChildren()) {
-                        DaKonList.add(ds.getValue(DataKondangan.class));
-                        Log.d("myTag" ,ds.getKey());
-                    }
-
-
-                    RecyclerView recyclerView = findViewById(R.id.list_data_kondangan);
-                    recyclerView.setHasFixedSize(true);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LihatDataKondangan.this);
-                    adapter = new DataKondanganAdapter(DaKonList);
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setAdapter(adapter);
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
@@ -90,6 +61,9 @@ public class LihatDataKondangan extends AppCompatActivity{
 
             @Override
             public boolean onQueryTextChange(String newText) {
+//                if(adapter == null){
+//                    adapter.getFilter().filter(newText);
+//                }
                 adapter.getFilter().filter(newText);
                 return false;
             }

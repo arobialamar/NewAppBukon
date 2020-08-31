@@ -30,14 +30,39 @@
             android:inputType="text"
             android:hint="@string/nama"/>
 
+        <TextView
+            android:id="@+id/posisi_spinner1"
+            android:layout_below="@+id/nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="19sp"
+            android:text="Kecamatan"
+            android:textColor="@color/black"/>
+
         <Spinner
             android:id="@+id/sp_kcmt"
             android:layout_below="@+id/nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/posisi_spinner1"
             android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/posisi_spinner2"
+            android:layout_below="@+id/sp_kcmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="19sp"
+            android:text="Kelurahan"
+            android:textColor="@color/black"/>
 
         <Spinner
             android:id="@+id/sp_desa"
@@ -45,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="14dp"
+            android:layout_toRightOf="@+id/posisi_spinner2"
             android:layout_marginEnd="10dp"/>
 
         <EditText
@@ -76,7 +102,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:hint="Jumlah uang"/>
 
         <EditText
             android:id="@+id/liter"
@@ -85,7 +112,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:hint="Jumlah beras"/>
 
         <TextView
             android:layout_below="@+id/nominal"

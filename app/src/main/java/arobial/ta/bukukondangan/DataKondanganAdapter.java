@@ -1,7 +1,6 @@
 package arobial.ta.bukukondangan;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,18 +43,8 @@ public class DataKondanganAdapter extends RecyclerView.Adapter<DataKondanganAdap
         holder.te_kcmtn.setText("Kecamatan : "+currentItem.getKecamatan());
         holder.te_klrhn.setText("Kelurahan : "+currentItem.getKelurahan());
         holder.te_alamat.setText("Alamat : "+currentItem.getAlamat());
-        holder.te_rp.setText("Uang : "+currentItem.getRp());
+        holder.te_rp.setText(currentItem.getRp());
         holder.te_liter.setText("Beras : "+currentItem.getLiter());
-
-        holder.btn_lihat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent updateDelete = new Intent(v.getContext(), UpdateDeleteActivity.class);
-                updateDelete.putExtra(UpdateDeleteActivity.EXTRA_DATAKONDANGAN, DaKonList.get(position));
-                v.getContext().startActivity(updateDelete);
-            }
-        });
     }
 
     @Override
@@ -81,27 +70,8 @@ public class DataKondanganAdapter extends RecyclerView.Adapter<DataKondanganAdap
             te_alamat = itemView.findViewById(R.id.tv_alamat);
             te_rp = itemView.findViewById(R.id.tv_rp);
             te_liter = itemView.findViewById(R.id.tv_liter);
-            btn_lihat = itemView.findViewById(R.id.btn_liat);
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent updateDelete = new Intent(v.getContext(), UpdateDeleteActivity.class);
-//
-//                    updateDelete.putExtra("key",key);
-//                    updateDelete.putExtra("nama",te_nama.getText().toString());
-////                    updateDelete.putExtra("kecamatan",te_kcmtn.getText().toString());
-////                    updateDelete.putExtra("kelurahan",te_klrhn.getText().toString());
-//                    updateDelete.putExtra("alamat",te_alamat.getText().toString());
-//                    updateDelete.putExtra("rp",te_rp.getText().toString());
-//                    updateDelete.putExtra("liter",te_liter.getText().toString());
-//
-//                    v.getContext().startActivity(updateDelete);
-//                }
-//            });
         }
     }
-
 
     @Override
     public Filter getFilter() {

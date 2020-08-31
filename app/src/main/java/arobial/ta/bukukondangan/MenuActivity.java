@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
-    LinearLayout DataUang, DataBeras, LihatData, LapKondangan;
+    LinearLayout DataUang, LihatData, LapKondangan;
     TextView tampil_kategori;
     DatabaseReference getRef;
     String getUserID;
@@ -33,7 +33,6 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         DataUang = findViewById(R.id.ll_dtUang);
-        DataBeras = findViewById(R.id.ll_dtBeras);
         LihatData = findViewById(R.id.ll_liatData);
         LapKondangan = findViewById(R.id.ll_laporan);
         tampil_kategori = findViewById(R.id.kategori_hajatan);
@@ -50,14 +49,6 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(toLogin);
             }
         });
-
-//        DataBeras.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent toLogin = new Intent(MenuActivity.this, TambahDataBeras.class);
-//                startActivity(toLogin);
-//            }
-//        });
 
         LihatData.setOnClickListener(new View.OnClickListener() {
             @Override

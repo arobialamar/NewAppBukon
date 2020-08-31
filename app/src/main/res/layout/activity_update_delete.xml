@@ -13,7 +13,7 @@
         android:text="Data Kondangan"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/black"
         android:layout_gravity="center_horizontal" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
         <EditText
             android:id="@+id/edit_nama"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="text"
             android:hint="Kecamatan"/>
 
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="text"
             android:hint="Kelurahan"/>
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:hint="Tidak Ada" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="24dp"
             android:text="@string/jml_uang"
             android:textColor="@color/black"/>
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/edit_liter"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:hint="Tidak Ada"/>
 
         <TextView
@@ -98,10 +98,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="230dp"
             android:text="@string/jml_beras"
             android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/posisi_spinner1"
+            android:layout_below="@+id/edit_liter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="24dp"
+            android:textSize="19sp"
+            android:text="Status"
+            android:textColor="@color/black"/>
+
+        <Spinner
+            android:id="@+id/sp_status"
+            android:layout_below="@+id/edit_liter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/posisi_spinner1"
+            android:layout_marginEnd="10dp"/>
 
     </RelativeLayout>
 
@@ -112,23 +134,23 @@
         android:layout_gravity="center_horizontal">
 
         <Button
-            android:onClick="btnUbah_click"
             android:id="@+id/btn_ubah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="90dp"
             android:layout_gravity="center_horizontal"
             android:textSize="17sp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_save"
             android:text="ubah" />
 
         <Button
-            android:onClick="btnHapus_Click"
             android:id="@+id/btn_hapus"
             android:layout_toRightOf="@+id/btn_ubah"
             android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="90dp"
             android:layout_gravity="center_horizontal"
             android:textSize="17sp"
             android:textColor="@color/black"
