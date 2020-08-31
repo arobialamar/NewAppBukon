@@ -109,6 +109,7 @@ public class RecyclerView_Config {
                 List<DataKondangan> filteredList = new ArrayList<>();
                 if (constraint == null || constraint.length() == 0){
                     filteredList.addAll(DaKonListFull);
+
                 }else {
                     String filterPattern = constraint.toString().toLowerCase().trim();
                     for (DataKondangan item : DaKonListFull){

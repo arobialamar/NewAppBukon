@@ -82,36 +82,36 @@ public class TambahData extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, daftar_kecamatan);
         kecamatan.setAdapter(adapter);
 
-//        kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (position==0){
-//                    ArrayAdapter<String> adapter1;
-//                    adapter1 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, select);
-//                    kelurahan.setAdapter(adapter1);
-//                }
-//                if (position==1){
-//                    ArrayAdapter<String> adapter2;
-//                    adapter2 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, bongas);
-//                    kelurahan.setAdapter(adapter2);
-//                }
-//                if (position==2){
-//                    ArrayAdapter<String> adapter3;
-//                    adapter3 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, gawet);
-//                    kelurahan.setAdapter(adapter3);
-//                }
-//                if (position==3){
-//                    ArrayAdapter<String> adapter4;
-//                    adapter4 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, kroya);
-//                    kelurahan.setAdapter(adapter4);
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==0){
+                    ArrayAdapter<String> adapter1;
+                    adapter1 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, select);
+                    kelurahan.setAdapter(adapter1);
+                }
+                if (position==1){
+                    ArrayAdapter<String> adapter2;
+                    adapter2 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, bongas);
+                    kelurahan.setAdapter(adapter2);
+                }
+                if (position==2){
+                    ArrayAdapter<String> adapter3;
+                    adapter3 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, gawet);
+                    kelurahan.setAdapter(adapter3);
+                }
+                if (position==3){
+                    ArrayAdapter<String> adapter4;
+                    adapter4 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, kroya);
+                    kelurahan.setAdapter(adapter4);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         Tambah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,26 +119,12 @@ public class TambahData extends AppCompatActivity {
                 btnTambah();
             }
         });
-
-//        getRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists())
-//                    maxid=(dataSnapshot.getChildrenCount());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
     }
 
     private void getValues(){
         addData.setNama(Nama.getText().toString());
         addData.setKecamatan(kecamatan.getSelectedItem().toString());
-//        addData.setKelurahan(kelurahan.getSelectedItem().toString());
+        addData.setKelurahan(kelurahan.getSelectedItem().toString());
         addData.setAlamat(Alamat.getText().toString());
         addData.setRp(Nominal.getText().toString());
         addData.setLiter(Liter.getText().toString());

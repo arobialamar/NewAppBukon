@@ -63,6 +63,7 @@ public class LihatDataKondangan extends AppCompatActivity{
             public boolean onQueryTextChange(String newText) {
 //                if(adapter == null){
 //                    adapter.getFilter().filter(newText);
+//                    Log.d("myTag", "This is my message");
 //                }
                 adapter.getFilter().filter(newText);
                 return false;
