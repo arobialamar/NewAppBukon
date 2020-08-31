@@ -26,3 +26,6 @@ public class SplashActivity extends Activity {
         thread.start();
     }
 }
+
+
+//comment
