@@ -103,10 +103,12 @@ public class LoginActivity extends Activity {
     }
     @Override
     protected void onStart() {
+        //Jika User Telah Masuk/Login, maka akan mengangani kajadian apakah user telah masuk
         super.onStart();
         firebaseAuth.addAuthStateListener(AuthStateListener); }
     @Override
     protected void onStop() {
+        //Saat Aktifitas dihentikan, maka listener akan dihapus
         super.onStop();
         if(AuthStateListener != null){
             firebaseAuth.removeAuthStateListener(AuthStateListener); }
