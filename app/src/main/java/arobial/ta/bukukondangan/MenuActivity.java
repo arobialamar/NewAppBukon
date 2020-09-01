@@ -8,10 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,17 +24,14 @@ public class MenuActivity extends AppCompatActivity {
     DatabaseReference getRef;
     String getUserID;
     FirebaseUser user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         DataUang = findViewById(R.id.ll_dtUang);
         LihatData = findViewById(R.id.ll_liatData);
         LapKondangan = findViewById(R.id.ll_laporan);
         tampil_kategori = findViewById(R.id.kategori_hajatan);
-
         //Mendapatkan User ID dari akun yang terautentikasi
         user = FirebaseAuth.getInstance().getCurrentUser();
         getUserID = user.getUid();
@@ -46,18 +41,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent toLogin = new Intent(MenuActivity.this, TambahData.class);
-                startActivity(toLogin);
-            }
+                startActivity(toLogin); }
         });
-
         LihatData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toLogin = new Intent(MenuActivity.this, LihatDataKondangan.class);
-                startActivity(toLogin);
-            }
+                startActivity(toLogin); }
         });
-
         LapKondangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,39 +56,27 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(toLogin);
             }
         });
-
         getRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String kategori_hjt = dataSnapshot.child(getUserID).child("Kategori Hajatan").child("kategori").getValue(String.class);
-
-                tampil_kategori.setText(kategori_hjt);
-            }
-
+                String kategori_hjt = dataSnapshot.child(getUserID).child("Kategori Hajatan")
+                        .child("kategori").getValue(String.class);
+                tampil_kategori.setText(kategori_hjt); }
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_toolbar, menu);
-        return true;
-    }
-
+        return true; }
     public boolean onOptionsItemSelected(MenuItem item) {
             if (item.getItemId() == R.id.logout) {
                 FirebaseAuth.getInstance().signOut();
                 Intent tuLogin = new Intent(MenuActivity.this, LoginActivity.class);
                 tuLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 tuLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(tuLogin);
-            }
-
-        return true;
-    }
+                startActivity(tuLogin); }
+        return true; }
 }
