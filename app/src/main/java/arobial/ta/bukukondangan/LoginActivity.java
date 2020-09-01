@@ -9,19 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class LoginActivity extends Activity {
-
     TextView NewAccount, ForgotPwd;
     Button BtnSignIn;
     EditText emailId, password;
@@ -33,7 +29,6 @@ public class LoginActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         firebaseAuth = FirebaseAuth.getInstance();
         NewAccount = findViewById(R.id.tv_newacc);
         BtnSignIn = findViewById(R.id.btn_signin);
@@ -47,14 +42,12 @@ public class LoginActivity extends Activity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser =  firebaseAuth.getCurrentUser();
                 if (firebaseUser != null){
-                    Toast.makeText(LoginActivity.this, "Anda telah login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Anda telah login",
+                            Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(i);
-                }
-
+                    startActivity(i); }
             }
         };
-
         BtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,60 +62,53 @@ public class LoginActivity extends Activity {
                     password.requestFocus();
                 }
                 else if (email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Kolom tidak boleh kosong !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Kolom tidak boleh kosong !",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if (!(email.isEmpty() && pwd.isEmpty())){
-                    firebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(
+                            LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (! task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Email atau password salah",
+                                        Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 LoadBar.setMessage("Mohon tunggu..");
                                 LoadBar.show();
-                                Intent ToMenu = new Intent(LoginActivity.this, MenuActivity.class);
-                                startActivity(ToMenu);
+                                Intent ToMenu = new Intent(LoginActivity.this,
+                                        MenuActivity.class); startActivity(ToMenu);
                             }
                         }
                     });
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
-                }
+                    Toast.makeText(LoginActivity.this, "Terjadi kesalahan",
+                            Toast.LENGTH_SHORT).show(); }
             }
         });
-
         NewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+                startActivity(intent); }
         });
-
         ForgotPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent ForgotPwd = new Intent(LoginActivity.this, ForgotPassword.class);
-                startActivity(ForgotPwd);
-            }
+                startActivity(ForgotPwd); }
         });
     }
-
     @Override
     protected void onStart() {
-        //Jika User Telah Masuk/Login, maka akan mengangani kajadian apakah user telah masuk
         super.onStart();
-        firebaseAuth.addAuthStateListener(AuthStateListener);
-    }
-
+        firebaseAuth.addAuthStateListener(AuthStateListener); }
     @Override
     protected void onStop() {
-        //Saat Aktifitas dihentikan, maka listener akan dihapus
         super.onStop();
         if(AuthStateListener != null){
-            firebaseAuth.removeAuthStateListener(AuthStateListener);
-        }
+            firebaseAuth.removeAuthStateListener(AuthStateListener); }
     }
 }
