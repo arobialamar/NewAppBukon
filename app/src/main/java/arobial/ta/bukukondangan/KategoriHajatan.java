@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.Nullable;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,40 +20,30 @@ public class KategoriHajatan extends Activity {
     String getUserID;
     FirebaseUser user;
     DataKondangan addData;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kategori);
-
         kategori = findViewById(R.id.et_kategori);
         selesai = findViewById(R.id.btn_finish);
 
         addData = new DataKondangan();
 
-        //Mendapatkan User ID dari akun yang terautentikasi
         user = FirebaseAuth.getInstance().getCurrentUser();
         getUserID = user.getUid();
-        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).child("Kategori Hajatan");
-
+        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).
+                child("Kategori Hajatan");
         selesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnSelesai();
-            }
+                btnSelesai(); }
         });
-
     }
-
     private void getValues(){
-        addData.setKategori(kategori.getText().toString());
-    }
-
+        addData.setKategori(kategori.getText().toString()); }
     public void btnSelesai(){
         getValues();
-
         String isiKategori = kategori.getText().toString();
-
         if (isiKategori.isEmpty()){
             kategori.setError("Masukan Kategori Hajatan");
             kategori.requestFocus();
@@ -64,8 +52,7 @@ public class KategoriHajatan extends Activity {
             @Override
             public void onSuccess(Void aVoid) {
                 kategori.setText("");
-                startActivity(new Intent(KategoriHajatan.this, MenuActivity.class));
-            }
+                startActivity(new Intent(KategoriHajatan.this, MenuActivity.class)); }
         });
     }
 }
