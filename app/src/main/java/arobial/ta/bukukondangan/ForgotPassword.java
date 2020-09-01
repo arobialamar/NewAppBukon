@@ -35,7 +35,8 @@ public class ForgotPassword extends Activity {
                     your_email.setError("Tolong masukkan email anda");
                     your_email.requestFocus();
                 }else {
-                    firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener
+                            (new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
