@@ -18,6 +18,7 @@ public class FirebaseDatabaseHelper {
     private String getUserID;
     private FirebaseUser user;
     private List<DataKondangan> dataKondangans = new ArrayList<>();
+
     public FirebaseDatabaseHelper() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -25,12 +26,14 @@ public class FirebaseDatabaseHelper {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child(getUserID).child("Data Kondangan");;
     }
+
     public interface DataStatus{
         void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
     }
+
     public void readDataKondangan(final DataStatus dataStatus){
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -44,21 +47,24 @@ public class FirebaseDatabaseHelper {
                 }
                 dataStatus.DataIsLoaded(dataKondangans, keys);
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
-    }
 
-    public void UpdateDataKondangan(String key, DataKondangan dataKondangan,
-                                    final DataStatus dataStatus){
-        mReference.child(key).setValue(dataKondangan).addOnSuccessListener
-                (new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                dataStatus.DataIsUpdated();
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
+
+    public void UpdateDataKondangan(String key, DataKondangan dataKondangan, final DataStatus dataStatus){
+        mReference.child(key).setValue(dataKondangan).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsUpdated();
+
+            }
+        });
+    }
+
     public void DeleteDataKondangn(String key, final DataStatus dataStatus){
         mReference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

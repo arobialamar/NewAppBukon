@@ -22,16 +22,24 @@ public class LihatDataKondangan extends AppCompatActivity{
         new FirebaseDatabaseHelper().readDataKondangan(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys) {
-                new RecyclerView_Config().setConfig(mRecyclerView, LihatDataKondangan.this,
-                        dataKondangans, keys); }
+                new RecyclerView_Config().setConfig(mRecyclerView, LihatDataKondangan.this, dataKondangans, keys);
+            }
+
             @Override
-            public void DataIsInserted() { }
+            public void DataIsInserted() {
+
+            }
             @Override
-            public void DataIsUpdated() { }
+            public void DataIsUpdated() {
+
+            }
             @Override
-            public void DataIsDeleted() { }
+            public void DataIsDeleted() {
+
+            }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -42,11 +50,13 @@ public class LihatDataKondangan extends AppCompatActivity{
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false; }
+                return false;
+            }
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                return false; }
+                return false;
+            }
         });
         return true;
     }
