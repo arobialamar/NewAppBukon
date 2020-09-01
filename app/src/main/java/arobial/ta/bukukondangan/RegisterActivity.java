@@ -8,16 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends Activity {
-
     EditText emailId, password, cfm_password;
     Button BtnSignUp;
     FirebaseAuth firebaseAuth;
@@ -27,7 +24,6 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         firebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
@@ -38,12 +34,9 @@ public class RegisterActivity extends Activity {
         BtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BuatAkunBaru();
-
-            }
+                BuatAkunBaru(); }
         });
     }
-
     private void BuatAkunBaru() {
         String email = emailId.getText().toString();
         String pwd = password.getText().toString();
@@ -65,25 +58,27 @@ public class RegisterActivity extends Activity {
             cfm_password.requestFocus();
         }
         else if (!pwd.equals(cpwd)){
-            Toast.makeText(this, "Password anda tidak sama, silahkan cek lagi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password anda tidak sama, silahkan cek lagi",
+                    Toast.LENGTH_SHORT).show();
         }
         else if (!(email.isEmpty() && pwd.isEmpty())){
-            firebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener
+                    (RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()){
-                        Toast.makeText(RegisterActivity.this, "Terjadi kesalahan, silahkan coba lagi", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                        Toast.makeText(RegisterActivity.this,
+                                "Terjadi kesalahan, silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                    } else {
                         pgrBar.setMessage("Mohon tunggu..");
                         pgrBar.show();
-                        startActivity(new Intent(RegisterActivity.this, KategoriHajatan.class));
-                    }
+                        startActivity(new Intent(RegisterActivity.this,
+                                KategoriHajatan.class)); }
                 }
             });
         }
         else {
-            Toast.makeText(RegisterActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
-        }
+            Toast.makeText(RegisterActivity.this, "Terjadi kesalahan",
+                    Toast.LENGTH_SHORT).show(); }
     }
 }
