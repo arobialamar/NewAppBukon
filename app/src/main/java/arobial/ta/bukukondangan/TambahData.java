@@ -1,9 +1,7 @@
 package arobial.ta.bukukondangan;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,20 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class TambahData extends AppCompatActivity {
     Spinner kecamatan, kelurahan;
@@ -38,12 +30,10 @@ public class TambahData extends AppCompatActivity {
     String getUserID;
     FirebaseUser user;
     DataKondangan addData;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data);
-
         kecamatan = findViewById(R.id.sp_kcmt);
         kelurahan = findViewById(R.id.sp_desa);
         Nama = findViewById(R.id.nama);
@@ -53,13 +43,12 @@ public class TambahData extends AppCompatActivity {
         Tambah = findViewById(R.id.btn_tambah);
 
         addData = new DataKondangan();
-
         //Mendapatkan User ID dari akun yang terautentikasi
         user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         getUserID = user.getUid();
-        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).child("Data Kondangan");
-
+        getRef = FirebaseDatabase.getInstance().getReference().child(getUserID).
+                child("Data Kondangan");
 
         final List<String> daftar_kecamatan = new ArrayList<>();
         daftar_kecamatan.add(0,"- -");
@@ -68,59 +57,57 @@ public class TambahData extends AppCompatActivity {
         daftar_kecamatan.add("Kroya");
 
         final String[] select = {"- -"};
-
         final String[] gawet =
                 {"- -","Babakanjaya", "Drunten Kulon","Drunten Wetan",
-                        "Gabuskulon","Gabuswetan","Kedokangabus","Kedungdawa","Rancahan","Rancamulya","Sekarmulya"};
+                        "Gabuskulon","Gabuswetan","Kedokangabus","Kedungdawa",
+                        "Rancahan","Rancamulya","Sekarmulya"};
         final String[] bongas =
-                {"- -","Bongas","Cipaat","Cipedang","Kertajaya","Kertamulya","Margamulya","Plawangan","Sidamulya"};
+                {"- -","Bongas","Cipaat","Cipedang","Kertajaya","Kertamulya",
+                        "Margamulya","Plawangan","Sidamulya"};
         final String[] kroya =
-                {"- -","Jayamulya","Kroya","Sukamelang","Sukaslamet","Sumbon","Tanjungkerta","Temiyang","Temiyangsari"};
-
+                {"- -","Jayamulya","Kroya","Sukamelang","Sukaslamet","Sumbon",
+                        "Tanjungkerta","Temiyang","Temiyangsari"};
 
         ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, daftar_kecamatan);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                daftar_kecamatan);
         kecamatan.setAdapter(adapter);
-
         kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
                     ArrayAdapter<String> adapter1;
-                    adapter1 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, select);
+                    adapter1 = new ArrayAdapter<>(TambahData.this,android.R.layout.
+                            simple_spinner_dropdown_item, select);
                     kelurahan.setAdapter(adapter1);
                 }
                 if (position==1){
                     ArrayAdapter<String> adapter2;
-                    adapter2 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, bongas);
+                    adapter2 = new ArrayAdapter<>(TambahData.this,android.R.layout.
+                            simple_spinner_dropdown_item, bongas);
                     kelurahan.setAdapter(adapter2);
                 }
                 if (position==2){
                     ArrayAdapter<String> adapter3;
-                    adapter3 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, gawet);
+                    adapter3 = new ArrayAdapter<>(TambahData.this,android.R.layout.
+                            simple_spinner_dropdown_item, gawet);
                     kelurahan.setAdapter(adapter3);
                 }
                 if (position==3){
                     ArrayAdapter<String> adapter4;
-                    adapter4 = new ArrayAdapter<>(TambahData.this,android.R.layout.simple_spinner_dropdown_item, kroya);
-                    kelurahan.setAdapter(adapter4);
-                }
+                    adapter4 = new ArrayAdapter<>(TambahData.this,android.R.layout.
+                            simple_spinner_dropdown_item, kroya);
+                    kelurahan.setAdapter(adapter4); }
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
-
         Tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnTambah();
-            }
+                btnTambah(); }
         });
     }
-
     private void getValues(){
         addData.setNama(Nama.getText().toString());
         addData.setKecamatan(kecamatan.getSelectedItem().toString());
@@ -129,16 +116,11 @@ public class TambahData extends AppCompatActivity {
         addData.setRp(Nominal.getText().toString());
         addData.setLiter(Liter.getText().toString());
     }
-
     public void btnTambah(){
                 getValues();
-
                 String isiNama1 = Nama.getText().toString();
-//                String isiCamat = kecamatan.getSelectedItem().toString();
-//                String isiLurah = kelurahan.getSelectedItem().toString();
                 String isiLamat = Alamat.getText().toString();
                 String isiRp = Nominal.getText().toString();
-
                 if (isiNama1.isEmpty()){
                     Nama.setError("Masukan Nama Utama");
                     Nama.requestFocus();
@@ -152,8 +134,8 @@ public class TambahData extends AppCompatActivity {
                     Nominal.requestFocus();
                 }else{
                     String Key = getRef.push().getKey();
-//                    String Key = getRef.child("Pengguna").child(getUserID).child("Data Uang").push().getKey();
-                    getRef.child(Key).setValue(addData).addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                    getRef.child(Key).setValue(addData).addOnSuccessListener
+                            (this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Nama.setText("");
@@ -162,13 +144,14 @@ public class TambahData extends AppCompatActivity {
                             Alamat.setText("");
                             Nominal.setText("");
                             Liter.setText("");
-                            Snackbar.make(findViewById(R.id.btn_tambah), "Data berhasil ditambahkan", Snackbar.LENGTH_LONG).show();
-                        }
+                            Snackbar.make(findViewById(R.id.btn_tambah),
+                                    "Data berhasil ditambahkan", Snackbar.LENGTH_LONG).show();}
                     });
                 }
     }
 
-    //menampilkan menu toolbar (logout)
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
