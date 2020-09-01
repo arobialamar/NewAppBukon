@@ -7,10 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,6 @@ public class UpdateDeleteActivity extends AppCompatActivity {
     Button tombol_ubah, tombol_hapus;
     String key, nama, kecamatan, kelurahan, alamat, rp, liter;
     Spinner statusSp;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +52,8 @@ public class UpdateDeleteActivity extends AppCompatActivity {
         status_spinner.add("Sudah Dikembalikan");
 
         ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, status_spinner);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                status_spinner);
         statusSp.setAdapter(adapter);
 
         tombol_ubah.setOnClickListener(new View.OnClickListener() {
@@ -69,50 +67,37 @@ public class UpdateDeleteActivity extends AppCompatActivity {
                 dataKondangan.setRp(rpEt.getText().toString());
                 dataKondangan.setLiter(literEt.getText().toString());
                 dataKondangan.setStatus(statusSp.getSelectedItem().toString());
-
-                new FirebaseDatabaseHelper().UpdateDataKondangan(key, dataKondangan, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseDatabaseHelper().UpdateDataKondangan(key, dataKondangan,
+                        new FirebaseDatabaseHelper.DataStatus() {
                     @Override
-                    public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys) {
-                    }
-
+                    public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys){}
                     @Override
-                    public void DataIsInserted() {
-                    }
-
+                    public void DataIsInserted() {}
                     @Override
                     public void DataIsUpdated() {
-                        Toast.makeText(UpdateDeleteActivity.this, "Data Berhasil Diperbaharui",
-                                Toast.LENGTH_LONG).show();
-                    }
-
+                        Toast.makeText(UpdateDeleteActivity.this,
+                                "Data Berhasil Diperbaharui",
+                                Toast.LENGTH_LONG).show(); }
                     @Override
-                    public void DataIsDeleted() {
-                    }
+                    public void DataIsDeleted() {}
                 });
             }
         });
-
         tombol_hapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FirebaseDatabaseHelper().DeleteDataKondangn(key, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseDatabaseHelper().DeleteDataKondangn(key,
+                        new FirebaseDatabaseHelper.DataStatus() {
                     @Override
-                    public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys) {
-                    }
-
+                    public void DataIsLoaded(List<DataKondangan> dataKondangans, List<String> keys){}
                     @Override
-                    public void DataIsInserted() {
-                    }
-
+                    public void DataIsInserted() {}
                     @Override
-                    public void DataIsUpdated() {
-                    }
-
+                    public void DataIsUpdated() {}
                     @Override
                     public void DataIsDeleted() {
                         Toast.makeText(UpdateDeleteActivity.this, "Data Berhasil Dihapus",
-                                Toast.LENGTH_LONG).show();
-                    }
+                                Toast.LENGTH_LONG).show(); }
                 });
             }
         });
